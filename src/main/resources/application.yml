@@ -8,9 +8,7 @@ spring:
   datasource:
 #    url: jdbc:mysql://localhost:3306/java_freestyle
     url: jdbc:mysql://freestyleserver.mysql.database.azure.com:3306/java_freestyle?useSSL=true&requireSSL=false
-#    username: vax
     username: freestyleuser@freestyleserver
-#    password: vakporize
     password: @XAV419.com
     driver-class-name: com.mysql.cj.jdbc.Driver
 
