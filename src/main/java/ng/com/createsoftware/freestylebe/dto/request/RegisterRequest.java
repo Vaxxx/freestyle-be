@@ -9,17 +9,13 @@ import java.util.List;
 
 @Data
 public class RegisterRequest {
-    @NotBlank
-    @Size(min = 3, max = 20)
-    private String firstname;
-
-    @NotBlank
-    @Size(min = 3, max = 20)
-    private String lastname;
 
     @NotBlank
     @Size(min = 3, max = 20)
     private String stagename;
+
+    @NotBlank
+    private String age;
   
     @NotBlank
     @Size(max = 50)

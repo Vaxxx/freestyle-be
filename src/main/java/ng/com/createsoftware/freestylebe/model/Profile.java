@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,28 +22,46 @@ public class Profile {
     @JoinColumn(name="user_id", referencedColumnName="id")
     private User user;
 
+
+    @NotBlank
+    @Size(max = 20)
+    private String firstname;
+
+    @NotBlank
+    @Size(max = 20)
+    private String lastname;
+
+    @NotBlank
+    @Size(min=10)
+    private String phone;
+
+
     private String city;
     private String country;
     private String bio;
    
-    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Genre> genres = new ArrayList<>();
+    private String picture;
 
-    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Hobby> hobbies = new ArrayList<>();
-
-    @OneToMany(cascade= CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Discipline> disciplines = new ArrayList<>();
-
-    @Lob 
-    private byte[] picture;
-    @Lob 
-    private byte[] banner;
+    private String banner;
 
     public Profile(User user, String city, String country, String bio) {
         this.user = user;
         this.city = city;
         this.country = country;
         this.bio = bio;
+    }
+
+    public Profile(User user, String firstname, String lastname, String phone,
+                   String city, String country, String bio, String picture,
+                   String banner) {
+        this.user = user;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.city = city;
+        this.country = country;
+        this.bio = bio;
+        this.picture = picture;
+        this.banner = banner;
     }
 }

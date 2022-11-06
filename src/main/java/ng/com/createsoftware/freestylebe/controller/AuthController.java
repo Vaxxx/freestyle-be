@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -60,13 +61,14 @@ public class AuthController {
 
      UserDetailsImpl userDetails = (UserDetailsImpl)authentication.getPrincipal();
      List<String>roles = userDetails.getAuthorities().stream()
-            .map(item -> item.getAuthority())
+            .map(GrantedAuthority::getAuthority)
             .collect(Collectors.toList());
 
        return ResponseEntity.ok(new JwtResponse(jwt, 
                   userDetails.getId(),
                   userDetails.getUsername(),
                   userDetails.getEmail(),
+                  userDetails.getAge(),
                   roles
            ));     
 
@@ -92,8 +94,8 @@ public class AuthController {
     //          registerRequest.getEmail(),
     //            encoder.encode(registerRequest.getPassword()));
 
-    User user = new User(registerRequest.getFirstname(), registerRequest.getLastname(),registerRequest.getStagename(), 
-    registerRequest.getEmail(),
+    User user = new User(registerRequest.getStagename(),
+    registerRequest.getAge(), registerRequest.getEmail(),
       encoder.encode(registerRequest.getPassword()));
 
 

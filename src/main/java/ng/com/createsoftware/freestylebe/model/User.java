@@ -25,17 +25,11 @@ public class User {
 
   @NotBlank
   @Size(max = 20)
-  private String firstname;
-
-  @NotBlank
-  @Size(max = 20)
-  private String lastname;
-
-  @NotBlank
-  @Size(max = 20)
   @Column(unique=true)
   private String stagename;
 
+  @NotBlank
+  private String age;
   @NotBlank
   @Email
   private String email;
@@ -57,25 +51,30 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public User(@NotBlank @Size(max = 20) String stagename, @NotBlank @Email String email,
-        @NotBlank @Size(max = 25) String password) {
-      this.stagename = stagename;
-      this.email = email;
-      this.password = password;
-    }
+//    public User(@NotBlank @Size(max = 20) String stagename, @NotBlank @Email String email,
+//        @NotBlank @Size(max = 25) String password) {
+//      this.stagename = stagename;
+//      this.email = email;
+//      this.password = password;
+//    }
 
-    public User(@NotBlank @Size(max = 20) String firstname, @NotBlank @Size(max = 20) String lastname,
-        @NotBlank @Size(max = 20) String stagename, @NotBlank @Email String email, @NotBlank String password) {
-      this.firstname = firstname;
-      this.lastname = lastname;
-      this.stagename = stagename;
-      this.email = email;
-      this.password = password;
-    }
+  public User(String stagename, String age, String email, String password) {
+    this.stagename = stagename;
+    this.age = age;
+    this.email = email;
+    this.password = password;
+  }
 
- 
-    
-    
-
-
+  @Override
+  public String toString() {
+    return "User{" +
+            "id=" + id +
+            ", stagename='" + stagename + '\'' +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            ", roles=" + roles +
+            ", createdAt=" + createdAt +
+            ", updatedAt=" + updatedAt +
+            '}';
+  }
 }

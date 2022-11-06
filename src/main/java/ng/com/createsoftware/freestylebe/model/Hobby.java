@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "hobbies")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

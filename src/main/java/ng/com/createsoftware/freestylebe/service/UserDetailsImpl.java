@@ -20,7 +20,9 @@ public class UserDetailsImpl implements UserDetails {
     private String stagename;
   
     private String email;
-  
+
+    private String age;
+
     @JsonIgnore
     private String password;
   
@@ -28,11 +30,12 @@ public class UserDetailsImpl implements UserDetails {
   
     
 
-    public UserDetailsImpl(Long id, String username, String email, String password,
+    public UserDetailsImpl(Long id, String username, String email, String age, String password,
             Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.stagename = username;
         this.email = email;
+        this.age = age;
         this.password = password;
         this.authorities = authorities;
     }
@@ -42,7 +45,7 @@ public class UserDetailsImpl implements UserDetails {
               .map(role -> new SimpleGrantedAuthority(role.getName().name()))
               .collect(Collectors.toList());
 
-              return new UserDetailsImpl(user.getId(), user.getStagename(), user.getEmail(), user.getPassword(), authorities);
+              return new UserDetailsImpl(user.getId(), user.getStagename(), user.getEmail(), user.getAge(), user.getPassword(), authorities);
     }
 
 
@@ -99,4 +102,12 @@ public class UserDetailsImpl implements UserDetails {
         UserDetailsImpl user = (UserDetailsImpl) o;
         return Objects.equals(id, user.id);
       }
+
+    public String getAge() {
+        return age;
     }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+}

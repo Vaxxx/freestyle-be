@@ -10,6 +10,9 @@ import java.util.List;
 public class ProfileRequest {
 
     private Long id;
+    private String firstname;
+    private String lastname;
+    private String phone;
     private String city;
     private String country;
     private String bio;
@@ -20,6 +23,9 @@ public class ProfileRequest {
     private byte[] picture;
     @Lob 
     private byte[] banner;
+
+    private String question;
+    private String answer;
     
      
     private Long user_id;
