@@ -10,4 +10,6 @@ public interface UserService {
     User getUserById(Long id);
     void deleteUser(Long id);
     User editUser(Long userId, User user);
+
+    Boolean existsByStagename(String stagename);
 }

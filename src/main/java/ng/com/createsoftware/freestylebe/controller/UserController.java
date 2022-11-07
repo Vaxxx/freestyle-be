@@ -36,4 +36,14 @@ public class UserController {
         userService.deleteUser(id);
         return new ResponseEntity<>( HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/{stagename}")
+    public String checkStageName(@PathVariable("stagename") String stagename){
+         Boolean isStageName = userService.existsByStagename(stagename);
+        if(isStageName){
+            return "Stage Name Exists";
+        }else{
+            return "Stage Name does not exists";
+        }
+
+    }
 }

@@ -1,5 +1,6 @@
 package ng.com.createsoftware.freestylebe.service;
 
+import ng.com.createsoftware.freestylebe.exception.UserNotFoundException;
 import ng.com.createsoftware.freestylebe.model.User;
 import ng.com.createsoftware.freestylebe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -43,5 +45,14 @@ public class UserServiceImpl implements UserService{
        editedUser.setAge(user.getAge());
        userRepository.save(editedUser);
        return editedUser;
+    }
+
+    @Override
+    public Boolean existsByStagename(String stagename) {
+        Optional<User> user = userRepository.findByStagename(stagename);
+        if(user.isPresent())
+            return true;
+        else
+            return false;
     }
 }

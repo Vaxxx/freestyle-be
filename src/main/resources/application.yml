@@ -10,8 +10,8 @@ spring:
     url: jdbc:mysql://freestyleserver.mysql.database.azure.com:3306/java_freestyle?useSSL=true&requireSSL=false
     username: freestyleuser@freestyleserver
 #    username: vax
-#    password: Vakp0r1z3.com
-    password: vakporize
+    password: Vakp0r1z3.com
+#    password: vakporize
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
