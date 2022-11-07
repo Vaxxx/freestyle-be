@@ -10,4 +10,5 @@ public interface ProfileService {
     Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile, String pictureDir, String bannerDir, ProfileRequest profileRequest) throws Exception;
 
 
+
 }

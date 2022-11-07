@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/profile")
 public class StageController {
 
     private final ProfileService profileService;

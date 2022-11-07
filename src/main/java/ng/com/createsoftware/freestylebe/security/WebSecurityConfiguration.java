@@ -69,6 +69,7 @@ public class WebSecurityConfiguration {
         .authorizeRequests().antMatchers("/api/auth/**").permitAll()
             .antMatchers("/api/user/**").permitAll()
         .antMatchers("/api/page/**").permitAll()
+        .antMatchers("/api/profile/**").permitAll()
 
         .anyRequest().authenticated()
         .and().formLogin();
