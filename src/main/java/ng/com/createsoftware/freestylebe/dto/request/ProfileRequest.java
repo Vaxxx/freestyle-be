@@ -19,10 +19,14 @@ public class ProfileRequest {
     private List<String> genre = new ArrayList<>();
     private List<String> hobby = new ArrayList<>();
     private List<String> discipline = new ArrayList<>();
-    @Lob 
-    private byte[] picture;
-    @Lob 
-    private byte[] banner;
+//    @Lob
+//    private byte[] picture;
+//    @Lob
+//    private byte[] banner;
+
+
+    private String picture;
+    private String banner;
 
     private String question;
     private String answer;

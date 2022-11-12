@@ -38,11 +38,15 @@ public class Profile {
 
     private String city;
     private String country;
-    private String bio;
-   
-    private String picture;
 
+    private String bio;
+
+    private String picture;
     private String banner;
+//    @Lob
+//    private byte[] picture;
+//    @Lob
+//    private byte[] banner;
 
     public Profile(User user, String city, String country, String bio) {
         this.user = user;
@@ -64,4 +68,17 @@ public class Profile {
         this.picture = picture;
         this.banner = banner;
     }
+
+
+//    public Profile(User user, String firstname, String lastname, String phone, String city, String country, String bio, byte[] picture, byte[] banner) {
+//        this.user = user;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.phone = phone;
+//        this.city = city;
+//        this.country = country;
+//        this.bio = bio;
+//        this.picture = picture;
+//        this.banner = banner;
+//    }
 }

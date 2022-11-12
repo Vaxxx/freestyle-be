@@ -33,6 +33,82 @@ public class ProfileServiceImpl implements ProfileService {
     @Autowired
     private SecModelRepository secModelRepository;
 
+//    @Override
+//    public Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile, ProfileRequest profileRequest) throws Exception {
+//        String picture = StringUtils.cleanPath(Objects.requireNonNull(pictureFile.getOriginalFilename()));
+//        Profile profile = null;
+//        //get banner
+//        String banner = StringUtils.cleanPath(Objects.requireNonNull(bannerFile.getOriginalFilename()));
+//
+//        try{
+//            if(picture.contains("..") || banner.contains(".."))
+//                throw new Exception("Please check your upload path");
+//
+//            //business logic to save user
+//
+//            profile = new Profile();
+//            profile.setCity(profileRequest.getCity());
+//            profile.setCountry(profileRequest.getCountry());
+//            profile.setBio(profileRequest.getBio());
+//
+//
+//            ////create a container for genre
+//            List<Genre> genres = new ArrayList<>();
+//            List<String> allGenres = profileRequest.getGenre();
+//            for(String genre : allGenres){
+//                Genre newGenre = new Genre(genre);
+//                genres.add(newGenre);
+//            }
+//
+//            //container for hobby
+//            List<Hobby> hobbies = new ArrayList<>();
+//            List<String> allHobbies = profileRequest.getHobby();
+//            for(String hobby : allHobbies){
+//                Hobby  newHobby = new Hobby(hobby);
+//                hobbies.add(newHobby);
+//            }
+//
+//            //Container for discipline
+//            List<Discipline> disciplines = new ArrayList<>();
+//            List<String> allDisciplines = profileRequest.getDiscipline();
+//            for(String discipline : allDisciplines){
+//                Discipline newDiscipline = new Discipline(discipline);
+//                disciplines.add(newDiscipline);
+//            }
+//
+//            profile.setPicture(pictureFile.getBytes());
+//            profile.setBanner(bannerFile.getBytes());
+//
+//            //get the user
+//            long userId = profileRequest.getUser_id();
+//            User user = userRepository.findById(userId).get();
+//            //save the genre
+//            for(Genre genre: genres){
+//                Genre newGenre = new Genre(genre.getName(), user);
+//                genreRepository.save(newGenre);
+//            }
+//            //sve the hobby
+//            for(Hobby hobby : hobbies){
+//                Hobby newHobby = new Hobby(hobby.getName(), user);
+//                hobbyRepository.save(newHobby);
+//            }
+//
+//            //save the Discipline
+//
+//            for(Discipline discipline : disciplines){
+//                Discipline newDiscipline = new Discipline(discipline.getName(), user);
+//                disciplineRepository.save(newDiscipline);
+//            }
+//
+//
+//            //save the profile
+//            profileRepository.save(profile);
+//        }catch(Exception ex){
+//            throw new Exception("Issue with registering the user: " + ex);
+//        }
+//        return profile;
+//    }
+
     @Override
     public Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile, String pictureDir, String bannerDir,ProfileRequest profileRequest)
             throws Exception {
@@ -41,7 +117,7 @@ public class ProfileServiceImpl implements ProfileService {
                     Profile profile = null;
                     //get banner
                   try{
-                        if(picture.contains("..") || banner.contains(".."))              
+                        if(picture.contains("..") || banner.contains(".."))
                              throw new Exception("Please check your upload path");
 
                       //get picture bytes
@@ -88,7 +164,7 @@ public class ProfileServiceImpl implements ProfileService {
                         User user = userRepository.findById(userId).get();
 
                         //save the genre
-                        for(Genre genre: genres){                           
+                        for(Genre genre: genres){
                             Genre newGenre = new Genre(genre.getName(), user);
                             genreRepository.save(newGenre);
                         }
@@ -97,7 +173,7 @@ public class ProfileServiceImpl implements ProfileService {
                             Hobby newHobby = new Hobby(hobby.getName(), user);
                             hobbyRepository.save(newHobby);
                         }
-              
+
                         //save the Discipline
 
                         for(Discipline discipline : disciplines){
@@ -139,7 +215,5 @@ public class ProfileServiceImpl implements ProfileService {
                     throw new Exception("Issue with registering the user: " + ex);
                   }
                   return profile;
-    }
-
-
+     }
 }

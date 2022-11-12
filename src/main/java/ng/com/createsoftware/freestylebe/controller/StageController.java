@@ -4,10 +4,12 @@ import ng.com.createsoftware.freestylebe.dto.request.ProfileRequest;
 import ng.com.createsoftware.freestylebe.dto.response.MessageResponse;
 import ng.com.createsoftware.freestylebe.model.Profile;
 import ng.com.createsoftware.freestylebe.service.ProfileService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -47,7 +49,26 @@ public class StageController {
 
         return ResponseEntity.ok(new MessageResponse("Profile has been added successfully!"));
     }
-
-
+//    public ResponseEntity<Profile> registerUser(@RequestParam("pictureImage")MultipartFile pictureFile, @RequestParam("bannerImage")MultipartFile bannerFile, ProfileRequest profileRequest) throws Exception{
+//
+//        Profile profile = new Profile();
+//        String downloadUrl = "";
+//
+//        //set a download path
+//        downloadUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path("/download/")
+//                .path(profileRequest.getUser_id().toString())
+//                .toUriString();
+//
+//        profile.setPicture(pictureFile.getBytes());
+//        profile.setBanner(bannerFile.getBytes())  ;
+//
+//        profileService.saveProfile(pictureFile, bannerFile, profileRequest);
+//
+//        return new ResponseEntity<>(profile,
+//                HttpStatus.OK);
+//
+//    }
+//
 
 }

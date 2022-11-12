@@ -7,8 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 public interface ProfileService {
-    Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile, String pictureDir, String bannerDir, ProfileRequest profileRequest) throws Exception;
+     Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile, String pictureDir, String bannerDir, ProfileRequest profileRequest) throws Exception;
 
+//    Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile,  ProfileRequest profileRequest)throws Exception;
 
 
 }
