@@ -30,11 +30,12 @@ public class StageController {
         return "Freestyle League";
     }
 
-    @PostMapping("/addProfile")
+    @PostMapping("/addProfile/{userId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> addProfile(@RequestParam("pictureImage")MultipartFile pictureFile,
                                         @RequestParam("bannerImage") MultipartFile bannerFile,
-                                        @ModelAttribute ProfileRequest request
+                                        @ModelAttribute ProfileRequest request,
+                                        @PathVariable("userId") long userId
                                         ) throws Exception {
         Profile profile = new Profile();
         profile.setFirstname(request.getFirstname());
@@ -44,8 +45,8 @@ public class StageController {
         profile.setCountry(request.getCountry());
         profile.setBio(request.getBio());
 
-
-        profileService.saveProfile(pictureFile, bannerFile, pictureDir, bannerDir,request);
+        System.out.println("User Id: " + userId);
+        profileService.saveProfile(pictureFile, bannerFile, pictureDir, bannerDir,request, userId);
 
         return ResponseEntity.ok(new MessageResponse("Profile has been added successfully!"));
     }

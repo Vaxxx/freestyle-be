@@ -110,7 +110,7 @@ public class ProfileServiceImpl implements ProfileService {
 //    }
 
     @Override
-    public Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile, String pictureDir, String bannerDir,ProfileRequest profileRequest)
+    public Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile, String pictureDir, String bannerDir,ProfileRequest profileRequest, long userId)
             throws Exception {
                 String picture = StringUtils.cleanPath(Objects.requireNonNull(pictureFile.getOriginalFilename()));
                   String banner = StringUtils.cleanPath(Objects.requireNonNull(bannerFile.getOriginalFilename()));
@@ -158,11 +158,13 @@ public class ProfileServiceImpl implements ProfileService {
                         }
 
 
-
+                      System.out.println();
                         //get the user id
-                        long userId = profileRequest.getUser_id();
+//                        long userId = profileRequest.getUser_id();
                       System.out.println("The user Id: is:" + userId);
-                        User user = userRepository.findById(userId).get();
+//                        User user = userRepository.findById(userId).get();
+                      User user = userRepository.findById(userId).get();
+                      System.out.println("The user is : " + user);
 
                         //save the genre
                         for(Genre genre: genres){
