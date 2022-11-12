@@ -161,6 +161,7 @@ public class ProfileServiceImpl implements ProfileService {
 
                         //get the user id
                         long userId = profileRequest.getUser_id();
+                      System.out.println("The user Id: is:" + userId);
                         User user = userRepository.findById(userId).get();
 
                         //save the genre
