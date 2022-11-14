@@ -1,11 +1,13 @@
 package ng.com.createsoftware.freestylebe.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name="profile")
 @NoArgsConstructor
-public class Profile {
+public class Profile implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,12 +43,12 @@ public class Profile {
 
     private String bio;
 
-    private String picture;
-    private String banner;
-//    @Lob
-//    private byte[] picture;
-//    @Lob
-//    private byte[] banner;
+//    private String picture;
+//    private String banner;
+    @Lob
+    private byte[] picturez;
+    @Lob
+    private byte[] bannerz;
 
     public Profile(User user, String city, String country, String bio) {
         this.user = user;
@@ -55,22 +57,9 @@ public class Profile {
         this.bio = bio;
     }
 
-    public Profile(User user, String firstname, String lastname, String phone,
-                   String city, String country, String bio, String picture,
-                   String banner) {
-        this.user = user;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.city = city;
-        this.country = country;
-        this.bio = bio;
-        this.picture = picture;
-        this.banner = banner;
-    }
-
-
-//    public Profile(User user, String firstname, String lastname, String phone, String city, String country, String bio, byte[] picture, byte[] banner) {
+//    public Profile(User user, String firstname, String lastname, String phone,
+//                   String city, String country, String bio, String picture,
+//                   String banner) {
 //        this.user = user;
 //        this.firstname = firstname;
 //        this.lastname = lastname;
@@ -81,4 +70,17 @@ public class Profile {
 //        this.picture = picture;
 //        this.banner = banner;
 //    }
+
+
+    public Profile(User user, String firstname, String lastname, String phone, String city, String country, String bio, byte[] picture, byte[] banner) {
+        this.user = user;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.city = city;
+        this.country = country;
+        this.bio = bio;
+        this.picturez = picture;
+        this.bannerz = banner;
+    }
 }

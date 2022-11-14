@@ -2,12 +2,14 @@ package ng.com.createsoftware.freestylebe.dto.request;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Lob;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class ProfileRequest {
+public class ProfileRequest implements Serializable {
 
     private Long id;
     private String firstname;
@@ -19,14 +21,14 @@ public class ProfileRequest {
     private List<String> genre = new ArrayList<>();
     private List<String> hobby = new ArrayList<>();
     private List<String> discipline = new ArrayList<>();
-//    @Lob
-//    private byte[] picture;
-//    @Lob
-//    private byte[] banner;
+    @Lob
+    private byte[] picture;
+    @Lob
+    private byte[] banner;
 
 
-    private String picture;
-    private String banner;
+//    private String picture;
+//    private String banner;
 
     private String question;
     private String answer;

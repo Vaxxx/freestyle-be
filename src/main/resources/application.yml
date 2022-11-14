@@ -6,7 +6,7 @@ server:
 
 spring:
   datasource:
-#    url: jdbc:mysql://localhost:3306/java_freestyle
+#    url: jdbc:mysql://localhost:3306/java_freestyle?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     url: jdbc:mysql://freestyleserver.mysql.database.azure.com:3306/java_freestyle?useSSL=true&requireSSL=false
     username: freestyleuser@freestyleserver
 #    username: vax
@@ -26,6 +26,11 @@ spring:
     show-sql: true
   main:
     allow-bean-definition-overriding: true
+
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
 
 ng:
   com:

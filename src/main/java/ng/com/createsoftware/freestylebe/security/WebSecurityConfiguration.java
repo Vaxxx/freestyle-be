@@ -56,10 +56,10 @@ public class WebSecurityConfiguration {
       return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/js/**", "/images/**");
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring().antMatchers("/js/**", "/images/**");
+//    }
 
     @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
