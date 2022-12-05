@@ -11,5 +11,11 @@ public interface ProfileService {
 
      Profile saveProfile(MultipartFile pictureFile, MultipartFile bannerFile,  ProfileRequest profileRequest,Long userId)throws Exception;
 
+     //get profile by user id
+     Profile getProfileByUser(Long userId);
+
+     //edit profile
+     Profile editProfile(Profile profile, Long userId, MultipartFile pictureFile, MultipartFile bannerFile) throws Exception;
+
 
 }

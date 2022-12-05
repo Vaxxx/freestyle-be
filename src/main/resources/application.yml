@@ -1,17 +1,17 @@
 
 server:
-  port: 8080
+  port: 8080 
   servlet:
     context-path: /freestyle
 
 spring:
   datasource:
-#    url: jdbc:mysql://localhost:3306/java_freestyle?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    url: jdbc:mysql://freestyleserver.mysql.database.azure.com:3306/java_freestyle?useSSL=true&requireSSL=false
-    username: freestyleuser@freestyleserver
-#    username: vax
-    password: Vakp0r1z3.com
-#    password: vakporize
+    url: jdbc:mysql://localhost:3306/java_freestyle?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    #url: jdbc:mysql://freestyleserver.mysql.database.azure.com:3306/java_freestyle?useSSL=true&requireSSL=false
+    #username: freestyleuser@freestyleserver
+    username: vax
+    #password: Vakp0r1z3.com
+    password: vakporize
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 

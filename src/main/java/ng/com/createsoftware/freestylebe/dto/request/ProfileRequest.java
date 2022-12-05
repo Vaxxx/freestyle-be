@@ -18,6 +18,10 @@ public class ProfileRequest implements Serializable {
     private String city;
     private String country;
     private String bio;
+
+    private String pictureName;
+    private String bannerName;
+
     private List<String> genre = new ArrayList<>();
     private List<String> hobby = new ArrayList<>();
     private List<String> discipline = new ArrayList<>();

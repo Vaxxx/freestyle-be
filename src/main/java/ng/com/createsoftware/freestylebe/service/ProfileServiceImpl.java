@@ -5,6 +5,7 @@ import ng.com.createsoftware.freestylebe.model.*;
 import ng.com.createsoftware.freestylebe.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,13 +46,17 @@ public class ProfileServiceImpl implements ProfileService {
 
             //business logic to save user
 
+            User user = userRepository.findById(userId).get();
+
             profile = new Profile();
             profile.setFirstname(profileRequest.getFirstname());
             profile.setLastname(profileRequest.getLastname());
+            profile.setUser(user);
             profile.setPhone(profileRequest.getPhone());
             profile.setCity(profileRequest.getCity());
             profile.setCountry(profileRequest.getCountry());
             profile.setBio(profileRequest.getBio());
+
 
 
             ////create a container for genre
@@ -77,17 +82,17 @@ public class ProfileServiceImpl implements ProfileService {
                 Discipline newDiscipline = new Discipline(discipline);
                 disciplines.add(newDiscipline);
             }
-            System.out.println("I got hereeee start");
+            profile.setPictureName(pictureFile.getOriginalFilename());
             profile.setPicturez(ImageData.compressImage(pictureFile.getBytes()));
           //  System.out.println(Arrays.toString(pictureFile.getBytes()));
-            profile.setBannerz(ImageData.compressImage(bannerFile.getBytes()));
-            System.out.println("I got hereeee start");
+            profile.setBannerName(bannerFile.getOriginalFilename());
+            profile.setBannerz(ImageData.compressImage(bannerFile.getBytes())); ;
          //   System.out.println(Arrays.toString(bannerFile.getBytes()));
             //get the user
 //            long userId = profileRequest.getUser_id();
 //            User user = userRepository.findById(userId).get();
 
-            User user = userRepository.findById(userId).get();
+
 
             //save the genre
             for(Genre genre: genres){
@@ -118,6 +123,46 @@ public class ProfileServiceImpl implements ProfileService {
             throw new Exception("Issue with registering the user: " + ex);
         }
         return profile;
+    }
+
+    @Override
+    public Profile getProfileByUser(Long userId) {
+
+        User user = userRepository.findById(userId).get();
+        return profileRepository.findByUser(user).orElseThrow(() ->
+                new IllegalArgumentException("User cannot be found"));
+//
+//        return profileRepository.findByUser(userId).get();
+    }
+
+
+    @Transactional
+    @Override
+    public Profile editProfile(Profile profile, Long userId, MultipartFile pictureFile, MultipartFile bannerFile) throws Exception {
+        Profile profileToEdit =  getProfileByUser(userId);
+
+        profileToEdit.setFirstname(profile.getFirstname());
+        profileToEdit.setLastname(profile.getLastname());
+        profileToEdit.setPhone(profile.getPhone());
+        profileToEdit.setCity(profile.getCity());
+        profileToEdit.setCountry(profile.getCountry());
+        profileToEdit.setBio(profile.getBio());
+        profileToEdit.setPictureName(pictureFile.getOriginalFilename());
+        profileToEdit.setPicturez(ImageData.compressImage(pictureFile.getBytes()));
+        profileToEdit.setBannerName(bannerFile.getOriginalFilename());
+        profileToEdit.setBannerz(ImageData.compressImage(bannerFile.getBytes()));
+
+        return profileRepository.save(profileToEdit);
+    }
+
+    public byte[] downloadPictureImage(String fileName){
+        Optional<Profile> pictureData = profileRepository.findByPictureName(fileName);
+        return ImageData.decompressImage(pictureData.get().getPicturez());
+    }
+
+    public byte[] downloadBannerImage(String fileName){
+        Optional<Profile> bannerData = profileRepository.findByBannerName(fileName);
+        return ImageData.decompressImage(bannerData.get().getBannerz());
     }
 
 //    @Override
@@ -230,4 +275,6 @@ public class ProfileServiceImpl implements ProfileService {
 //                  }
 //                  return profile;
 //     }
+
+
 }

@@ -43,6 +43,9 @@ public class Profile implements Serializable {
 
     private String bio;
 
+    private String pictureName;
+    private String bannerName;
+
 //    private String picture;
 //    private String banner;
     @Lob
@@ -72,7 +75,19 @@ public class Profile implements Serializable {
 //    }
 
 
-    public Profile(User user, String firstname, String lastname, String phone, String city, String country, String bio, byte[] picture, byte[] banner) {
+//    public Profile(User user, String firstname, String lastname, String phone, String city, String country, String bio, byte[] picture, byte[] banner) {
+//        this.user = user;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.phone = phone;
+//        this.city = city;
+//        this.country = country;
+//        this.bio = bio;
+//        this.picturez = picture;
+//        this.bannerz = banner;
+//    }
+
+    public Profile(User user, String firstname, String lastname, String phone, String city, String country, String bio, String pictureName, String bannerName, byte[] picturez, byte[] bannerz) {
         this.user = user;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -80,7 +95,9 @@ public class Profile implements Serializable {
         this.city = city;
         this.country = country;
         this.bio = bio;
-        this.picturez = picture;
-        this.bannerz = banner;
+        this.pictureName = pictureName;
+        this.bannerName = bannerName;
+        this.picturez = picturez;
+        this.bannerz = bannerz;
     }
 }
